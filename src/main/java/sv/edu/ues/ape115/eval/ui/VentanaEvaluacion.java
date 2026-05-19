@@ -33,8 +33,8 @@ public class VentanaEvaluacion extends JFrame {
     // Ejercicio 4 — GridBagLayout
     JTextField txtNombre;
     JTextField txtEmail;
-    JTextField txtTelefono;
-    JComboBox<String> cboDepartamento;
+    JTextField txtTelefono;   
+    JComboBox<String> cboDepartamento; 
 
     // Ejercicio 5 — JTabbedPane
     JTabbedPane tabbedPane;
@@ -89,7 +89,24 @@ public class VentanaEvaluacion extends JFrame {
         // TODO: implementar
         // Hint: new JPanel(new FlowLayout(FlowLayout.LEFT, 12, 6))
         //       setBorder(new LineBorder(COLOR_PRIMARIO, 2))
-        return new JPanel(); // reemplazar con la implementación correcta
+        JPanel panelNorth = new JPanel(new FlowLayout(FlowLayout.LEFT, 12, 6));
+        panelNorth.setBorder(new LineBorder(COLOR_PRIMARIO, 2));
+
+        JLabel lblTitulo = new JLabel("Sistema de Registro — APE 115");
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        lblTitulo.setForeground(COLOR_PRIMARIO);
+
+        Component strut = Box.createHorizontalStrut(20);
+
+        JLabel lblSubtitulo = new JLabel("Evaluación: Layout Managers y Bordes");
+        lblSubtitulo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        lblSubtitulo.setForeground(COLOR_NEUTRO);
+
+        panelNorth.add(lblTitulo);
+        panelNorth.add(strut);
+        panelNorth.add(lblSubtitulo);
+
+        return panelNorth; // reemplazar con la implementación correcta
     }
 
     // ═══════════════════════════════════════════════════════════
@@ -120,7 +137,31 @@ public class VentanaEvaluacion extends JFrame {
      */
     JPanel ejercicio2_West() {
         // TODO: implementar
-        return new JPanel(); // reemplazar
+        JPanel panelWest = new JPanel();
+        panelWest.setLayout(new BoxLayout(panelWest, BoxLayout.Y_AXIS)); 
+        panelWest.setPreferredSize(new Dimension(170, 0)); 
+
+        TitledBorder exterior = BorderFactory.createTitledBorder(
+            new EtchedBorder(EtchedBorder.LOWERED), "Módulos");
+        exterior.setTitleFont(new Font("Segoe UI", Font.BOLD, 11));
+        exterior.setTitleColor(COLOR_PRIMARIO);
+        
+        EmptyBorder interior = new EmptyBorder(6, 8, 6, 8);
+        panelWest.setBorder(BorderFactory.createCompoundBorder(exterior, interior));
+
+        panelWest.add(crearBotonMenu("📋 Registros", COLOR_PRIMARIO));
+        panelWest.add(Box.createVerticalStrut(4));
+        panelWest.add(crearBotonMenu("👤 Empleados", COLOR_PRIMARIO));
+        panelWest.add(Box.createVerticalStrut(4));
+        panelWest.add(crearBotonMenu("📦 Inventario", COLOR_PRIMARIO));
+        panelWest.add(Box.createVerticalStrut(4));
+        panelWest.add(crearBotonMenu("📊 Reportes", COLOR_PRIMARIO));
+        
+        panelWest.add(Box.createVerticalGlue());
+        
+        panelWest.add(crearBotonMenu("⚙ Configuración", COLOR_NEUTRO));
+
+        return panelWest; // reemplazar
     }
 
     // ═══════════════════════════════════════════════════════════
@@ -145,7 +186,17 @@ public class VentanaEvaluacion extends JFrame {
         // Hint: splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
         //                                 ejercicio4_FormularioGBL(),
         //                                 ejercicio5_TabbedPane());
-        return new JPanel(); // reemplazar
+        JPanel panelIzquierdo = new JPanel(new BorderLayout());
+        panelIzquierdo.add(new JLabel("Panel izquierdo", SwingConstants.CENTER), BorderLayout.CENTER);
+
+        JPanel panelDerecho = new JPanel(new BorderLayout());
+        panelDerecho.add(new JLabel("Panel derecho", SwingConstants.CENTER), BorderLayout.CENTER);
+
+        this.splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);
+        this.splitPane.setDividerLocation(380);
+        this.splitPane.setResizeWeight(0.45);
+        this.splitPane.setOneTouchExpandable(true);
+        return this.splitPane; // reemplazar
     }
 
     // ═══════════════════════════════════════════════════════════
@@ -194,7 +245,7 @@ public class VentanaEvaluacion extends JFrame {
     };
 
     JPanel ejercicio4_FormularioGBL() {
-        // TODO: implementar
+        // TODO: implementar       
         return new JPanel(); // reemplazar
     }
 
@@ -232,7 +283,8 @@ public class VentanaEvaluacion extends JFrame {
     JTabbedPane ejercicio5_TabbedPane() {
         // TODO: implementar
         // Hint: tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        return new JTabbedPane(); // reemplazar
+        
+    return new JTabbedPane(); // reemplazar
     }
 
     // ═══════════════════════════════════════════════════════════
@@ -276,8 +328,8 @@ public class VentanaEvaluacion extends JFrame {
      *
      * @return JPanel configurado
      */
-    JPanel ejercicio7_South() {
-        // TODO: implementar
+    JPanel ejercicio7_South() { 
+        // TODO: implementar      
         return new JPanel(); // reemplazar
     }
 
@@ -303,7 +355,7 @@ public class VentanaEvaluacion extends JFrame {
         btn.setBorder(BorderFactory.createEmptyBorder(6, 10, 6, 10));
         return btn;
     }
-
+    
     /**
      * Crea un botón de acción con estilo estándar APE115.
      * NO modificar.
